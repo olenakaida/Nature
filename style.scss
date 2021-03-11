@@ -1,0 +1,511 @@
+
+@import "base/base";
+@import "base/utilities";
+@import "base/mixins";
+@import "base/compositions";
+@import "base/card";
+@import "base/bg-video";
+@import "base/form";
+@import "base/footer";
+@import "base/navigation";
+@import "base/popup";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+html {
+  font-size: 62.5%;
+  @include respond(big-desktop) {
+      font-size: 75%;
+    }
+  @include respond(tab-land) {
+      font-size: 56.25%;
+  }
+  @include respond(tab-port) {
+      font-size: 50%;
+    }
+  //  @include respond(phone) {
+  //     font-size: 30%;
+  //   }
+
+
+  }
+
+
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #777;
+  box-sizing: border-box;
+  padding: 3rem;
+  @include respond(tab-port) {
+    padding: 0;
+  }
+}
+.header {
+  height: 96vh;
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(126, 213, 111, 0.8),
+      rgba(40, 180, 131, 0.8)
+    ),
+    url(img/hero.jpg);
+  position: relative;
+  background-size: cover;
+  background-position: top;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+@include respond(phone) {
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+}
+
+  &__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+  }
+  &__logo {
+    height: 3.5rem;
+  }
+  &__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+}
+
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+  backface-visibility: hidden;
+  margin-bottom: 5rem;
+
+
+  &--main {
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+    @include respond(phone) {
+      font-size: 5rem;
+      letter-spacing: 1rem;
+    }
+
+  }
+  &--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.5rem;
+    animation-name: moveInRight;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+    @include respond(phone) {
+      letter-spacing: .5rem;
+    }
+  }
+}
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem);
+  }
+  80% {
+    transform: translateX(1rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem);
+  }
+  80% {
+    transform: translateX(-0.1rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInBotton {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+.btn {
+  &,
+  &:link,
+  &:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block;
+    border-radius: 10rem;
+    transition: all 0.2s;
+    position: relative;
+  }
+  &:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+  }
+  &:active,
+  &:focus {
+    transform: translateY(-0.1rem);
+    box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.2);
+  }
+  &--white {
+    background-color: $color-white;
+    color: #777;
+  }
+  &--white::after {
+    background-color: $color-white;
+  }
+  &--green {
+    background-color: $color-primary;
+    color:  $color-white;
+  }
+  &--green::after {
+    background-color: $color-primary;
+  }
+  &:after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.4s;
+  }
+  &:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+  }
+  &--animated {
+    animation-name: moveInBotton;
+    animation-duration: 0.8s;
+    animation-delay: 0.7s;
+    animation-timing-function: ease;
+    animation-fill-mode: backwards;
+  }
+}
+
+.section-about {
+  background-color: $color-grey-light-1;
+  padding: 25rem 0;
+  margin-top: -22vh;
+ 
+}
+
+.heading-secondary {
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: inline-block;
+  background-image: linear-gradient(
+    to right,
+    $color-primary-light,
+    $color-primary-dark
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+ color: transparent;
+  letter-spacing: 0.2rem;
+  transition: all 0.2s;
+  @include respond(tab-port) {
+    font-size: 3rem;
+  }
+  @include respond(phone) {
+    font-size: 2.5rem;
+  }
+  &:hover {
+    transform: skewY(2deg) skewX(15deg) scale(1.1);
+    text-shadow: 0.5rem 1rem 2rem rgba($color-black, 0.2);
+  }
+
+}
+.row {
+  max-width: $grid-width;
+  margin: 0 auto;
+  padding: 2rem;
+
+  &:not(:last-child) {
+    margin-bottom: $margin-vertical;
+@include respond(tab-port){
+    margin-bottom: $margin-vertical-small;
+  }
+
+  }
+  @include respond(tab-port){
+    max-width: 50rem;
+    padding: 0 3rem;
+  }
+  @include clearfix;
+
+
+[class^="col-"] {
+  float: left;
+  &:not(:last-child) {
+    margin-right: $margin-horizontal;
+    @include respond(tab-port){
+      margin-right: 0;
+      margin-bottom: $margin-vertical-small;
+
+    }
+  }
+  @include respond(tab-port){
+    width: 100% !important;
+  }
+}
+
+  .col-1-of-2 {
+    width: calc((100% - #{$margin-horizontal}) / 2);
+    float: left;
+    &:not(:last-child) {
+      margin-right: $margin-horizontal;
+    }
+  }
+   .col-1-of-4 {
+        width: calc((100% - #{$margin-horizontal}*3)/4);
+      float: left;
+      &:not(:last-child) {
+          margin-right: $margin-horizontal;
+  }
+  }
+  .col-1-of-3 {
+      width: calc((100% - #{$margin-horizontal}*2)/3);
+      float:left;
+      &:not(:last-child){
+          margin-right: $margin-horizontal;
+          }
+  }
+
+  // .col-3-of-4 {
+  //     width: calc((100% - #{$margin-horizontal}*2)/2);
+  //     background-color: green;
+  //     float:left;
+  // }
+}
+.heading-tertiary {
+  font-size: $text-size;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.paragraph {
+  font-size: $text-size;
+  &:not(:last-child) {
+    margin-bottom: 3rem;
+  }
+}
+.btn-text {
+  &:link,
+  &:visited {
+    font-size: $text-size;
+    color: $color-primary;
+    display: inline-block;
+    text-decoration: none;
+    border-bottom: 1px solid $color-primary;
+    padding: 3px;
+  }
+  &:hover {
+    background-color: $color-primary;
+    color: $color-white;
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.15);
+    transform: translateY(-2px);
+  }
+  &:active {
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.15);
+    transform: translateY(0);
+  }
+}
+.section-features {
+  margin-top: -12rem;
+  padding: 20rem 0;
+  background-image: linear-gradient(
+    to right bottom,
+    rgba($color-primary-light, 0.8),
+    rgba($color-primary-dark, 0.8)),
+  url(img/nat-4.jpg);
+  background-size:cover;
+ transform:skewY(-7deg);
+ & > * {
+  transform:skewY(7deg);
+ }
+ @include respond(tab-port) {
+  padding: 10rem 0;
+}
+
+}
+.feature-box {
+  background-color: rgba($color-white, .8);
+  font-size: 1.5rem;
+  padding: 2.5rem;
+  border-radius: 3px;
+  box-shadow: 0 1.5rem 4rem rgba($color-black, .55);
+  text-align: center;
+   transition: transform .3s;
+   @include respond(tab-port) {
+    padding: 2rem;
+  }
+  &__icon {
+font-size: 6rem;
+margin-bottom: .5rem;
+display: inline-block;
+color: $color-primary-light;
+@include respond(tab-port) {
+  margin-bottom: 0;
+}
+  }
+
+  &:hover {
+    transform: translateY(-1.15rem) scale(1.03);
+  }
+}
+.section-tours {
+  background-color: $color-grey-light-1;
+  padding: 25rem 0 15rem 0;
+  @include respond(tab-port) {
+    padding: 20rem 0 10rem 0;
+  }
+  margin-top: -20rem;
+    &:first-child:hover {
+    transform: skewY(2deg) skewX(15deg) scale(1.1);
+    text-shadow: 0.5rem 1rem 2rem rgba($color-black, 0.2);
+  }
+}
+.section-stories {
+  padding: 15rem 0;
+  position: relative;
+  @include respond(tab-port) {
+    padding: 10rem 0;
+  }
+}
+
+.story {
+  width: 75%;
+  margin: 0 auto;
+  box-shadow: 0 3rem 6rem rgba($color-black, 0.15);
+  border-radius: 3px;
+  padding: 6rem;
+  padding-left: 9rem;
+  background-color:rgba( $color-white, .6);
+  transform: skewX(-12deg);
+  @include respond(tab-port) {
+    width: 100%;
+    padding: 4rem;
+    padding-left: 7rem;
+  }
+  @include respond(phone) {
+    transform: skewX(0);
+  }
+
+  &__shape {
+    width: 15rem;
+    height: 15rem;
+    float:left;
+    shape-outside: circle(50% at 50% 50%);
+    clip-path: circle(50% at 50% 50%);
+    transform: translateX(-3rem) skewX(12deg);
+    position: relative;
+    backface-visibility: hidden;
+    @include respond(phone) {
+      transform: translateX(-3rem) skewX(0);
+    }
+  }
+  &__img {
+    height: 100%;
+    transform: translateX(-4rem) scale(1.2);
+    backface-visibility: hidden;
+    transition: all .5s;
+  }
+  &__text {
+    transform: skewX(12deg);
+    @include respond(phone) {
+      transform: skewX(0);
+    }
+  }
+  &__caption {
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%, 20%);
+    color: $color-white;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 1.7rem;
+    opacity: 0;
+    transition: all .5s;
+    backface-visibility: hidden;
+
+  }
+  &:hover &__caption {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+  &:hover &__img {
+    transform: translateX(-4rem) scale(1);
+    filter: blur(3px) brightness(80%);
+
+  }
+}
+@import "base/bg-video";
+
+.section-book {
+  padding: 15rem 0;
+  background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark);
+  @include respond(tab-port) {
+    padding: 10rem 0;
+  }
+}
+
+.book {
+  background-image: linear-gradient(105deg, rgba($color-white, .9) 0%, rgba($color-white, .9) 50%, transparent 50%), url(img/nat-10.jpg);
+  background-size: 100%;
+  border-radius: 3px;
+  box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
+  // height: 50rem;
+  @include respond(tab-land) {
+    background-image: linear-gradient(105deg, rgba($color-white, .9) 0%, rgba($color-white, .9) 65%, transparent 65%), url(img/nat-10.jpg);
+    background-size:cover;
+  }
+  @include respond(tab-port) {
+    background-image: linear-gradient(105deg, rgba($color-white, .9) 0%, rgba($color-white, .9) 100%), url(img/nat-10.jpg);
+    background-size:cover;
+  }
+  &__form {
+    width: 50%;
+    padding: 6rem;
+    @include respond(tab-land) {
+      width: 65%;
+    }
+    @include respond(tab-port) {
+      width: 100%;
+    }
+  }
+}
+
